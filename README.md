@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Network Monitoring System</title>
-</head>
+
+
 <body>
     <h1>Secure Network Monitoring System</h1>
 
@@ -70,4 +65,3 @@
     <h2 id="conclusion">Conclusion</h2>
     <p>This project provides a secure method for monitoring the resource usage of networked hosts. The use of AES-GCM and HMAC ensures that the messages are both confidential and tamper-proof. Additionally, the security monitor can detect potential Denial of Service (DoS) attacks based on alert frequency.</p>
 </body>
-</html>
