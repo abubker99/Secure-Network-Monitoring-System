@@ -35,11 +35,11 @@
     </li>
     <li><strong>Run the server:</strong>
         <pre><code>python server.py</code></pre>
-        <img src="https://github.com/user-attachments/assets/9fd0143c-7c2c-463e-9f38-d69da47ea5ac" alt="server running" />
+        <img src="https://github.com/user-attachments/assets/2cb054ab-036d-47a0-b9fb-dfb7bce69952" alt="server running" />
     </li>
     <li><strong>Run the client:</strong>
         <pre><code>python client.py</code></pre>
-        <img src="https://github.com/user-attachments/assets/161bc1d0-a3fa-4806-af2f-8e00a9742b6c" alt="client running" />
+        <img src="https://github.com/user-attachments/assets/eefdd71c-ac0d-4136-b73e-b87d9ead036f" alt="client running" />
     </li>
     <li><strong>How it works:</strong> 
         <p>The security monitor (server) listens for incoming encrypted messages from the watchers (clients). The clients send alerts when the CPU or memory usage exceeds the predefined thresholds. The server validates the integrity of the messages and detects potential Denial of Service (DoS) attacks if multiple alerts are received in a short timeframe. Once the server and client are running, the system will begin monitoring and alerting as specified.</p>
