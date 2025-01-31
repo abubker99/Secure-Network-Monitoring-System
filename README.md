@@ -41,23 +41,22 @@
         <pre><code>python client.py</code></pre>
         <img src="https://github.com/user-attachments/assets/eefdd71c-ac0d-4136-b73e-b87d9ead036f" alt="client running" />
     </li>
-<li><strong>Test the System:</strong>
+    <li><strong>Test the System:</strong>
     <p>To test the system, I ran multiple programs at the same time to exceed the memory usage threshold. Below are the outputs from both the client and server:</p>
-    
     <h3>Client Output:</h3>
     <pre>
         <!-- Add a placeholder where you will insert the client output photo -->
         Example client output goes here.
     </pre>
     <p>The client monitors the system’s memory usage, and when the usage exceeds the threshold, it sends an encrypted alert message to the server.</p>
-
     <h3>Server Output:</h3>
     <pre>
         <!-- Add a placeholder where you will insert the server output photo -->
         Example server output goes here.
     </pre>
     <p>The server receives the alert, decrypts the message, and detects if there are multiple alerts from different clients within a short timeframe, indicating a potential DoS attack.</p>
-</li>
+     </li>
+
 
 </ol>
 
