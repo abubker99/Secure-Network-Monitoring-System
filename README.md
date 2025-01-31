@@ -56,18 +56,6 @@
         <pre> <img src="https://github.com/user-attachments/assets/ec1e3285-7eea-44b8-a1de-6ee16091f284"/>)
  </pre>
         <p><strong>Explanation:</strong> In this test, I ran multiple programs on the client side to simulate high resource usage, causing the client to send multiple alerts in a short time. The server detects these multiple alerts and identifies a potential Denial of Service (DoS) attack, as several alerts were received within the configured timeframe. The server logs the detection and takes appropriate action (such as alerting the admin). This demonstrates the system's ability to detect unusual patterns of alerts that could indicate a DoS attack.</p>
-    </li>
-    </pre>
-    <p>The client monitors the system’s memory usage, and when the usage exceeds the threshold, it sends an encrypted alert message to the server.</p>
-    <h3>Server Output:</h3>
-    <pre>
-        <!-- Add a placeholder where you will insert the server output photo -->
-        Example server output goes here.
-    </pre>
-    <p>The server receives the alert, decrypts the message, and detects if there are multiple alerts from different clients within a short timeframe, indicating a potential DoS attack.</p>
-     </li>
-
-
 </ol>
 
 <h2 id="features">Features</h2>
