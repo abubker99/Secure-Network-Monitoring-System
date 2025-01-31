@@ -41,12 +41,21 @@
         <pre><code>python client.py</code></pre>
         <img src="https://github.com/user-attachments/assets/eefdd71c-ac0d-4136-b73e-b87d9ead036f" alt="client running" />
     </li>
-    <li><strong>Test the System:</strong>
-    <p>To test the system, I ran multiple programs at the same time to exceed the memory usage threshold. Below are the outputs from both the client and server:</p>
-    <h3>Client Output:</h3>
-    <pre>
-        <!-- Add a placeholder where you will insert the client output photo -->
-        Example client output goes here.
+<li><strong>Test 1: Client Sends a Single Alert</strong>
+        <p><strong>Client Output:</strong></p>
+        <pre> <img src="https://github.com/user-attachments/assets/cbb417b5-2510-4199-8bf2-8a2836f0ceb0"/> </pre>
+        <p><strong>Server Output:</strong></p>
+        <pre> ![image](https://github.com/user-attachments/assets/9b3f29ad-c05c-40eb-afd6-36b1fc7a672a)
+ </pre>
+        <p><strong>Explanation:</strong> In this test, the client sends a single alert after detecting high resource usage (e.g., CPU or memory usage exceeding the threshold). The server successfully receives the alert, decrypts it, and logs the message without triggering any additional actions. This shows that the system works as expected for a single alert.</p>
+    </li>
+    <li><strong>Test 2: Multiple Alerts Triggering a DoS Attack Detection</strong>
+        <p><strong>Client Output:</strong></p>
+        <pre> <!-- Add the photo of the client output here --> </pre>
+        <p><strong>Server Output:</strong></p>
+        <pre> <!-- Add the photo of the server output here --> </pre>
+        <p><strong>Explanation:</strong> In this test, I ran multiple programs on the client side to simulate high resource usage, causing the client to send multiple alerts in a short time. The server detects these multiple alerts and identifies a potential Denial of Service (DoS) attack, as several alerts were received within the configured timeframe. The server logs the detection and takes appropriate action (such as alerting the admin). This demonstrates the system's ability to detect unusual patterns of alerts that could indicate a DoS attack.</p>
+    </li>
     </pre>
     <p>The client monitors the system’s memory usage, and when the usage exceeds the threshold, it sends an encrypted alert message to the server.</p>
     <h3>Server Output:</h3>
