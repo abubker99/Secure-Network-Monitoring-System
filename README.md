@@ -26,7 +26,7 @@
 
 <h2 id="installation">Installation</h2>
 <h3>1. Clone the repository:</h3>
-<pre><code>git clone (https://github.com/abubker99/Secure-Network-Monitoring-System.git)</code></pre>
+<pre><code>git clone https://github.com/abubker99/Secure-Network-Monitoring-System.git</code></pre>
 
 <h3>2. Install necessary Python packages:</h3>
 <pre><code>pip install cryptography psutil</code></pre>
