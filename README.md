@@ -1,30 +1,20 @@
 <h1>Secure Network Monitoring System</h1>
 
-<p>This project is a secure network watching system composed of a centralized security monitor and multiple security watchers. The watchers monitor CPU and memory usage on the networked hosts. If the usage exceeds a specified threshold, the watchers send encrypted alerts to the security monitor. The monitor validates the integrity of the messages and generates alerts for administrators in the case of suspicious activity, such as a potential DoS attack.</p>
+<p>This project is a secure network monitoring system composed of a centralized security monitor and multiple security watchers. The watchers monitor CPU and memory usage on the networked hosts. If the usage exceeds a specified threshold, the watchers send encrypted alerts to the security monitor. The monitor validates the integrity of the messages and generates alerts for administrators in case of suspicious activity, such as a potential DoS attack.</p>
 
 <h2>Table of Contents</h2>
 <ol>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#requirements">Requirements</a></li>
-    <li><a href="#installation">Installation</a></li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#installation">Setup and Usage</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#design">Design</a></li>
-    <li><a href="#security">Security</a></li>
     <li><a href="#conclusion">Conclusion</a></li>
 </ol>
 
 <h2 id="overview">Overview</h2>
-<p>The system is designed to monitor the CPU and memory usage of networked machines and send alerts if certain thresholds are exceeded. The security monitor listens for incoming connections from authenticated watchers, decrypts and verifies the integrity of the alerts, and identifies possible Denial of Service (DoS) attacks based on multiple alerts within a short time period.</p>
+<p>The system monitors the CPU and memory usage of networked machines and sends alerts if certain thresholds are exceeded. The security monitor listens for incoming connections from authenticated watchers, decrypts and verifies the integrity of the alerts, and identifies possible Denial of Service (DoS) attacks based on multiple alerts received within a short time period.</p>
 
-<h2 id="requirements">Requirements</h2>
-<ul>
-    <li>Python 3.x</li>
-    <li>Cryptography library</li>
-    <li>Psutil library</li>
-</ul>
-
-<h2 id="setup">Setup and Usage</h2>
+<h2 id="installation">Setup and Usage</h2>
 <p>To set up and use the Secure Network Monitoring System, follow these steps:</p>
 <ol>
     <li><strong>Clone the repository:</strong>
@@ -41,7 +31,7 @@
         <pre><code>python client.py</code></pre>
         <img src="https://github.com/user-attachments/assets/eefdd71c-ac0d-4136-b73e-b87d9ead036f" alt="client running" />
     </li>
-<li><strong>Test 1: Client Sends a Single Alert</strong>
+    <li><strong>Test 1: Client Sends a Single Alert</strong>
         <p><strong>Client Output:</strong></p>
         <pre> <img src="https://github.com/user-attachments/assets/cbb417b5-2510-4199-8bf2-8a2836f0ceb0"/> </pre>
         <p><strong>Server Output:</strong></p>
@@ -50,12 +40,11 @@
     </li>
     <li><strong>Test 2: Multiple Alerts Triggering a DoS Attack Detection</strong>
         <p><strong>Client Output:</strong></p>
-        <pre> <img src="https://github.com/user-attachments/assets/7281bff9-e484-4536-81a2-db5c0b72d8b9"/>)
- </pre>
+        <pre> <img src="https://github.com/user-attachments/assets/7281bff9-e484-4536-81a2-db5c0b72d8b9"/> </pre>
         <p><strong>Server Output:</strong></p>
-        <pre> <img src="https://github.com/user-attachments/assets/ec1e3285-7eea-44b8-a1de-6ee16091f284"/>)
- </pre>
+        <pre> <img src="https://github.com/user-attachments/assets/ec1e3285-7eea-44b8-a1de-6ee16091f284"/> </pre>
         <p><strong>Explanation:</strong> In this test, I ran multiple programs on the client side to simulate high resource usage, causing the client to send multiple alerts in a short time. The server detects these multiple alerts and identifies a potential Denial of Service (DoS) attack, as several alerts were received within the configured timeframe. The server logs the detection and takes appropriate action (such as alerting the admin). This demonstrates the system's ability to detect unusual patterns of alerts that could indicate a DoS attack.</p>
+    </li>
 </ol>
 
 <h2 id="features">Features</h2>
