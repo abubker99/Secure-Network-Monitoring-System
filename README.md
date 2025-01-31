@@ -45,15 +45,16 @@
         <p><strong>Client Output:</strong></p>
         <pre> <img src="https://github.com/user-attachments/assets/cbb417b5-2510-4199-8bf2-8a2836f0ceb0"/> </pre>
         <p><strong>Server Output:</strong></p>
-        <pre> ![image](https://github.com/user-attachments/assets/9b3f29ad-c05c-40eb-afd6-36b1fc7a672a)
- </pre>
+        <pre> <img src="https://github.com/user-attachments/assets/9b3f29ad-c05c-40eb-afd6-36b1fc7a672a"/> </pre>
         <p><strong>Explanation:</strong> In this test, the client sends a single alert after detecting high resource usage (e.g., CPU or memory usage exceeding the threshold). The server successfully receives the alert, decrypts it, and logs the message without triggering any additional actions. This shows that the system works as expected for a single alert.</p>
     </li>
     <li><strong>Test 2: Multiple Alerts Triggering a DoS Attack Detection</strong>
         <p><strong>Client Output:</strong></p>
-        <pre> <!-- Add the photo of the client output here --> </pre>
+        <pre> <img src="https://github.com/user-attachments/assets/7281bff9-e484-4536-81a2-db5c0b72d8b9"/>)
+ </pre>
         <p><strong>Server Output:</strong></p>
-        <pre> <!-- Add the photo of the server output here --> </pre>
+        <pre> <img src="https://github.com/user-attachments/assets/ec1e3285-7eea-44b8-a1de-6ee16091f284"/>)
+ </pre>
         <p><strong>Explanation:</strong> In this test, I ran multiple programs on the client side to simulate high resource usage, causing the client to send multiple alerts in a short time. The server detects these multiple alerts and identifies a potential Denial of Service (DoS) attack, as several alerts were received within the configured timeframe. The server logs the detection and takes appropriate action (such as alerting the admin). This demonstrates the system's ability to detect unusual patterns of alerts that could indicate a DoS attack.</p>
     </li>
     </pre>
