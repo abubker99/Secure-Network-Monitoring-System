@@ -1,44 +1,73 @@
-Secure Network Monitoring System
-This project is a secure network monitoring system where watchers monitor CPU and memory usage on different hosts. If the usage exceeds a set threshold, the watcher sends an encrypted alert to the security monitor. The monitor ensures message integrity and alerts the administrator in case of suspicious activity like Denial of Service (DoS) attacks, based on alerts received from multiple watchers in a short time.
-Features
-- **Encrypted Communication**: Watchers encrypt alert messages before sending them to the security monitor.
-- **Message Integrity**: HMAC is used to ensure that messages are not tampered with during transmission.
-- **Alert Handling**: The monitor verifies messages, decrypts them, and detects potential Denial of Service (DoS) attacks based on the number of alerts in a short timeframe.
-- **Threshold-Based Monitoring**: The system monitors CPU and memory usage, triggering alerts when usage exceeds specified thresholds.
-Requirements
-1. Python 3.x
-2. Required Python packages:
-   ```bash
-   pip install cryptography psutil
-   ```
-Project Structure
-- `client.py`: The security watcher that monitors CPU and memory usage. If thresholds are exceeded, it sends encrypted alerts to the server.
-- `server.py`: The security monitor that listens for incoming alerts, decrypts messages, verifies integrity, and detects potential DoS attacks.
-Setup
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
-   cd <project_directory>
-   ```
-2. Install necessary Python packages:
-   ```bash
-   pip install cryptography psutil
-   ```
-3. Run the security monitor (server):
-   ```bash
-   python server.py
-   ```
-4. Run the watcher (client):
-   ```bash
-   python client.py
-   ```
-How it Works
-1. **Watchers**: Each watcher monitors the CPU and memory usage of the local machine.
-   - If usage exceeds the threshold (80% for both CPU and memory), the watcher encrypts an alert message and sends it to the server.
-   - The alert includes the watcher ID, encrypted message data (using AES-GCM), and a HMAC for integrity verification.
-2. **Server (Monitor)**: The server listens for incoming messages, decrypts them using the predefined secret key, and verifies the integrity using HMAC.
-   - If multiple alerts are received within a short time period (indicating a possible DoS attack), the server prints an alert and clears the recent alerts.
-How to Test
-1. Start the server by running `python server.py`.
-2. Start the client by running `python client.py`.
-3. Watch the server console for alerts when the client detects high CPU or memory usage.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Network Monitoring System</title>
+</head>
+<body>
+    <h1>Secure Network Monitoring System</h1>
+
+    <p>This project is a secure network watching system composed of a centralized security monitor and multiple security watchers. The watchers monitor CPU and memory usage on the networked hosts. If the usage exceeds a specified threshold, the watchers send encrypted alerts to the security monitor. The monitor validates the integrity of the messages and generates alerts for administrators in the case of suspicious activity, such as a potential DoS attack.</p>
+
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#design">Design</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+    </ol>
+
+    <h2 id="overview">Overview</h2>
+    <p>The system is designed to monitor the CPU and memory usage of networked machines and send alerts if certain thresholds are exceeded. The security monitor listens for incoming connections from authenticated watchers, decrypts and verifies the integrity of the alerts, and identifies possible Denial of Service (DoS) attacks based on multiple alerts within a short time period.</p>
+
+    <h2 id="requirements">Requirements</h2>
+    <ul>
+        <li>Python 3.x</li>
+        <li>Cryptography library</li>
+        <li>Psutil library</li>
+    </ul>
+
+    <h2 id="installation">Installation</h2>
+    <h3>1. Clone the repository:</h3>
+    <pre><code>git clone https://github.com/your-repository-link.git</code></pre>
+
+    <h3>2. Install necessary Python packages:</h3>
+    <pre><code>pip install cryptography psutil</code></pre>
+
+    <h3>3. Run the server:</h3>
+    <pre><code>python server.py</code></pre>
+
+    <h3>4. Run the client:</h3>
+    <pre><code>python client.py</code></pre>
+
+    <h2 id="usage">Usage</h2>
+    <p>The security monitor (server) listens for incoming encrypted messages from the watchers (clients). The clients send alerts when the CPU or memory usage exceeds the predefined thresholds. The server validates the integrity of the messages and detects potential Denial of Service (DoS) attacks if multiple alerts are received in a short timeframe.</p>
+
+    <h2 id="features">Features</h2>
+    <ul>
+        <li>Secure encryption of messages using AES-GCM.</li>
+        <li>Integrity checking of messages using HMAC.</li>
+        <li>Detection of possible Denial of Service (DoS) attacks based on alert frequency.</li>
+        <li>Authentication of watchers based on predefined keys.</li>
+    </ul>
+
+    <h2 id="design">Design</h2>
+    <h3>1. Architecture</h3>
+    <p>The system consists of two main components:</p>
+    <ul>
+        <li><strong>Security Monitor (Server):</strong> This listens for incoming connections from watchers, decrypts the alerts, verifies their integrity, and checks for potential DoS attacks.</li>
+        <li><strong>Security Watchers (Clients):</strong> These monitor the system's CPU and memory usage and send encrypted alerts to the security monitor when thresholds are exceeded.</li>
+    </ul>
+
+    <h3>2. Security</h3>
+    <p>The messages sent between the clients and the server are encrypted using AES-GCM and authenticated using HMAC. This ensures the confidentiality and integrity of the messages, preventing tampering and eavesdropping.</p>
+
+    <h2 id="conclusion">Conclusion</h2>
+    <p>This project provides a secure method for monitoring the resource usage of networked hosts. The use of AES-GCM and HMAC ensures that the messages are both confidential and tamper-proof. Additionally, the security monitor can detect potential Denial of Service (DoS) attacks based on alert frequency.</p>
+</body>
+</html>
