@@ -24,21 +24,27 @@
     <li>Psutil library</li>
 </ul>
 
-<h2 id="installation">Installation</h2>
-<h3>1. Clone the repository:</h3>
-<pre><code>git clone https://github.com/abubker99/Secure-Network-Monitoring-System.git</code></pre>
-
-<h3>2. Install necessary Python packages:</h3>
-<pre><code>pip install cryptography psutil</code></pre>
-
-<h3>3. Run the server:</h3>
-<pre><code>python server.py</code></pre>
-
-<h3>4. Run the client:</h3>
-<pre><code>python client.py</code></pre>
-
-<h2 id="usage">Usage</h2>
-<p>The security monitor (server) listens for incoming encrypted messages from the watchers (clients). The clients send alerts when the CPU or memory usage exceeds the predefined thresholds. The server validates the integrity of the messages and detects potential Denial of Service (DoS) attacks if multiple alerts are received in a short timeframe.</p>
+<h2 id="setup">Setup and Usage</h2>
+<p>To set up and use the Secure Network Monitoring System, follow these steps:</p>
+<ol>
+    <li><strong>Clone the repository:</strong>
+        <pre><code>git clone https://github.com/abubker99/Secure-Network-Monitoring-System.git</code></pre>
+    </li>
+    <li><strong>Install the necessary Python packages:</strong>
+        <pre><code>pip install cryptography psutil</code></pre>
+    </li>
+    <li><strong>Run the server:</strong>
+        <pre><code>python server.py</code></pre>
+        <img src="https://github.com/user-attachments/assets/9fd0143c-7c2c-463e-9f38-d69da47ea5ac" alt="server running" />
+    </li>
+    <li><strong>Run the client:</strong>
+        <pre><code>python client.py</code></pre>
+        <img src="https://github.com/user-attachments/assets/161bc1d0-a3fa-4806-af2f-8e00a9742b6c" alt="client running" />
+    </li>
+    <li><strong>How it works:</strong> 
+        <p>The security monitor (server) listens for incoming encrypted messages from the watchers (clients). The clients send alerts when the CPU or memory usage exceeds the predefined thresholds. The server validates the integrity of the messages and detects potential Denial of Service (DoS) attacks if multiple alerts are received in a short timeframe. Once the server and client are running, the system will begin monitoring and alerting as specified.</p>
+    </li>
+</ol>
 
 <h2 id="features">Features</h2>
 <ul>
