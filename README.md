@@ -25,19 +25,19 @@
     </li>
     <li><strong>Run the server (Security Monitor):</strong>
         <pre><code>python server.py</code></pre>
-        <img src="https://github.com/user-attachments/assets/2cb054ab-036d-47a0-b9fb-dfb7bce69952" alt="server running" />
+        <pre> <img src="https://github.com/user-attachments/assets/3f0d6de6-6eff-4410-8322-0dac30a09692"/> </pre>
     </li>
     <li><strong>Run Watcher 1:</strong>
         <pre><code>python watcher_1.py</code></pre>
-        ![image](https://github.com/user-attachments/assets/6c733f49-0aef-45d0-84a1-6410a2f8df4a)
+       <pre> <img src="https://github.com/user-attachments/assets/c8fbfa05-4325-4a23-accc-150cfe81c5b6"/> </pre>
     </li>
     <li><strong>Run Watcher 2:</strong>
         <pre><code>python watcher_2.py</code></pre>
-        <img src="https://github.com/user-attachments/assets/cbb417b5-2510-4199-8bf2-8a2836f0ceb0" alt="watcher 2 running" />
+        <pre> <img src="https://github.com/user-attachments/assets/95bc51bd-4a73-4d6c-9344-4d6c9ddfb9cf"/> </pre>
     </li>
     <li><strong>Run Watcher 3:</strong>
         <pre><code>python watcher_3.py</code></pre>
-        <img src="https://github.com/user-attachments/assets/9b3f29ad-c05c-40eb-afd6-36b1fc7a672a" alt="watcher 3 running" />
+        <pre> <img src="https://github.com/user-attachments/assets/73722943-e953-48f2-b460-1e480f8e69e3"/> </pre>
     </li>
     <li><strong>Test 1: Watcher Sends a Single Alert</strong>
         <p><strong>Watcher Output:</strong></p>
