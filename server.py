@@ -4,7 +4,6 @@ import json
 import time
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import hashes, hmac
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import os
 
 # Monitor configuration
@@ -19,13 +18,13 @@ WATCHERS = {
     "watcher2": os.urandom(16),
 }
 
-alerts_received = []
+alerts_received = {}
 
 def decrypt_message(enc_data, key):
-    nonce = bytes.fromhex(enc_data["nonce"])  # Convert nonce from hex to bytes
-    ciphertext = bytes.fromhex(enc_data["ciphertext"])  # Convert ciphertext from hex to bytes
-    tag = bytes.fromhex(enc_data["tag"])  # Convert tag from hex to bytes
-    hmac_value = bytes.fromhex(enc_data["hmac"])  # Convert HMAC from hex to bytes
+    nonce = bytes.fromhex(enc_data["nonce"])
+    ciphertext = bytes.fromhex(enc_data["ciphertext"])
+    tag = bytes.fromhex(enc_data["tag"])
+    hmac_value = bytes.fromhex(enc_data["hmac"])
     
     # Verify HMAC integrity
     h = hmac.HMAC(key, hashes.SHA256())
@@ -41,11 +40,11 @@ def decrypt_message(enc_data, key):
     decryptor = cipher.decryptor()
     try:
         decrypted_message = decryptor.update(ciphertext) + decryptor.finalize()
-        return decrypted_message.decode()  # Return decrypted message as string
+        return decrypted_message.decode()
     except Exception as e:
         print("Decryption failed:", e)
         return None
-        
+
 def handle_watcher(conn, addr):
     global alerts_received
     print(f"New connection from {addr}\n")
@@ -55,30 +54,33 @@ def handle_watcher(conn, addr):
             part = conn.recv(1024)
             data += part
             if len(part) < 1024:
-                break  # Assuming the message is smaller than 1024 bytes
-            
-        # Now decode the entire message properly
-        data = data.decode()
-
-        print("Received data:", data )  # Debugging line to see the actual content received
+                break
         
-        enc_data = json.loads(data)  # Parse the JSON into a dictionary
-
-        if "watcher_id" not in enc_data:  # Check if 'watcher_id' is in the received data
+        data = data.decode()
+        print("Received data:", data)
+        
+        enc_data = json.loads(data)
+        if "watcher_id" not in enc_data:
             print("Error: Missing watcher_id in the received data")
             return
         
-        watcher_id = enc_data["watcher_id"]  # Retrieve the watcher_id
+        watcher_id = enc_data["watcher_id"]
         if watcher_id in WATCHERS:
             key = WATCHERS[watcher_id]
             decrypted_message = decrypt_message(enc_data, key)
             if decrypted_message:
                 print(f"Alert received from {watcher_id}: {decrypted_message}\n")
-                alerts_received.append(time.time())
+                alerts_received.setdefault(watcher_id, []).append(time.time())
                 
-                recent_alerts = [t for t in alerts_received if time.time() - t < 16]
-                if len(recent_alerts) >= ALERT_THRESHOLD:
-                    print("ALERT: Possible DoS attack detected! 🚨🚨🚨\n")
+                # Remove old alerts (outside the timeframe)
+                for w in list(alerts_received.keys()):
+                    alerts_received[w] = [t for t in alerts_received[w] if time.time() - t < ALERT_TIMEFRAME]
+                
+                # Count unique watchers who sent alerts recently
+                active_watchers = sum(1 for times in alerts_received.values() if times)
+                
+                if active_watchers >= ALERT_THRESHOLD:
+                    print("\U0001F6A8 ALERT: Possible Distributed DoS (DDoS) Attack Detected! \U0001F6A8")
                     alerts_received.clear()
         else:
             print("Unauthorized watcher.")
@@ -87,7 +89,6 @@ def handle_watcher(conn, addr):
     finally:
         conn.close()
 
-        
 def monitor_server():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
         server.bind((HOST, PORT))
