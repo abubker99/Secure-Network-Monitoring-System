@@ -39,23 +39,12 @@
         <pre><code>python watcher_3.py</code></pre>
         <pre> <img src="https://github.com/user-attachments/assets/73722943-e953-48f2-b460-1e480f8e69e3"/> </pre>
     </li>
-    <li><strong>Test 1: Watcher Sends a Single Alert</strong>
-        <p><strong>Watcher Output:</strong></p>
-        <pre> <img src="https://github.com/user-attachments/assets/cbb417b5-2510-4199-8bf2-8a2836f0ceb0"/> </pre>
+    <li><strong>Test : Multiple Alerts Triggering a DoS Attack Detection</strong>        
         <p><strong>Server Output:</strong></p>
-        <pre> <img src="https://github.com/user-attachments/assets/9b3f29ad-c05c-40eb-afd6-36b1fc7a672a"/> </pre>
-        <p><strong>Explanation:</strong> In this test, a single alert is sent from one of the watchers after detecting high resource usage (e.g., CPU or memory usage exceeding the threshold). The server successfully receives the alert and processes it accordingly, showing the system works as expected for a single alert.</p>
-    </li>
-    <li><strong>Test 2: Multiple Alerts Triggering a DoS Attack Detection</strong>
-        <p><strong>Watcher Output:</strong></p>
-        <pre> <img src="https://github.com/user-attachments/assets/7281bff9-e484-4536-81a2-db5c0b72d8b9"/> </pre>
-        <p><strong>Server Output:</strong></p>
-        <pre> <img src="https://github.com/user-attachments/assets/ec1e3285-7eea-44b8-a1de-6ee16091f284"/> </pre>
+        <pre> <img src="https://github.com/user-attachments/assets/4015b177-a1de-4643-8c21-64220fcaf3f3"/> </pre>
         <p><strong>Explanation:</strong> In this test, multiple watchers send alerts in a short time to simulate high resource usage, which triggers a Denial of Service (DoS) attack detection on the server. The server identifies multiple alerts in a short timeframe, logs the event, and triggers the appropriate alert mechanism (e.g., admin notification). This test demonstrates the system's ability to detect potential DoS attacks based on unusual patterns of alerts.</p>
     </li>
 </ol>
-
-
 <h2 id="features">Features</h2>
 <ul>
     <li>Secure encryption of messages using AES-GCM.</li>
