@@ -23,29 +23,38 @@
     <li><strong>Install the necessary Python packages:</strong>
         <pre><code>pip install cryptography psutil</code></pre>
     </li>
-    <li><strong>Run the server:</strong>
+    <li><strong>Run the server (Security Monitor):</strong>
         <pre><code>python server.py</code></pre>
         <img src="https://github.com/user-attachments/assets/2cb054ab-036d-47a0-b9fb-dfb7bce69952" alt="server running" />
     </li>
-    <li><strong>Run the client:</strong>
-        <pre><code>python client.py</code></pre>
-        <img src="https://github.com/user-attachments/assets/eefdd71c-ac0d-4136-b73e-b87d9ead036f" alt="client running" />
+    <li><strong>Run Watcher 1:</strong>
+        <pre><code>python watcher_1.py</code></pre>
+        <img src="https://github.com/user-attachments/assets/eefdd71c-ac0d-4136-b73e-b87d9ead036f" alt="watcher 1 running" />
     </li>
-    <li><strong>Test 1: Client Sends a Single Alert</strong>
-        <p><strong>Client Output:</strong></p>
+    <li><strong>Run Watcher 2:</strong>
+        <pre><code>python watcher_2.py</code></pre>
+        <img src="https://github.com/user-attachments/assets/cbb417b5-2510-4199-8bf2-8a2836f0ceb0" alt="watcher 2 running" />
+    </li>
+    <li><strong>Run Watcher 3:</strong>
+        <pre><code>python watcher_3.py</code></pre>
+        <img src="https://github.com/user-attachments/assets/9b3f29ad-c05c-40eb-afd6-36b1fc7a672a" alt="watcher 3 running" />
+    </li>
+    <li><strong>Test 1: Watcher Sends a Single Alert</strong>
+        <p><strong>Watcher Output:</strong></p>
         <pre> <img src="https://github.com/user-attachments/assets/cbb417b5-2510-4199-8bf2-8a2836f0ceb0"/> </pre>
         <p><strong>Server Output:</strong></p>
         <pre> <img src="https://github.com/user-attachments/assets/9b3f29ad-c05c-40eb-afd6-36b1fc7a672a"/> </pre>
-        <p><strong>Explanation:</strong> In this test, the client sends a single alert after detecting high resource usage (e.g., CPU or memory usage exceeding the threshold). The server successfully receives the alert, decrypts it, and logs the message without triggering any additional actions. This shows that the system works as expected for a single alert.</p>
+        <p><strong>Explanation:</strong> In this test, a single alert is sent from one of the watchers after detecting high resource usage (e.g., CPU or memory usage exceeding the threshold). The server successfully receives the alert and processes it accordingly, showing the system works as expected for a single alert.</p>
     </li>
     <li><strong>Test 2: Multiple Alerts Triggering a DoS Attack Detection</strong>
-        <p><strong>Client Output:</strong></p>
+        <p><strong>Watcher Output:</strong></p>
         <pre> <img src="https://github.com/user-attachments/assets/7281bff9-e484-4536-81a2-db5c0b72d8b9"/> </pre>
         <p><strong>Server Output:</strong></p>
         <pre> <img src="https://github.com/user-attachments/assets/ec1e3285-7eea-44b8-a1de-6ee16091f284"/> </pre>
-        <p><strong>Explanation:</strong> In this test, I ran multiple programs on the client side to simulate high resource usage, causing the client to send multiple alerts in a short time. The server detects these multiple alerts and identifies a potential Denial of Service (DoS) attack, as several alerts were received within the configured timeframe. The server logs the detection and takes appropriate action (such as alerting the admin). This demonstrates the system's ability to detect unusual patterns of alerts that could indicate a DoS attack.</p>
+        <p><strong>Explanation:</strong> In this test, multiple watchers send alerts in a short time to simulate high resource usage, which triggers a Denial of Service (DoS) attack detection on the server. The server identifies multiple alerts in a short timeframe, logs the event, and triggers the appropriate alert mechanism (e.g., admin notification). This test demonstrates the system's ability to detect potential DoS attacks based on unusual patterns of alerts.</p>
     </li>
 </ol>
+
 
 <h2 id="features">Features</h2>
 <ul>
