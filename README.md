@@ -29,7 +29,7 @@
     </li>
     <li><strong>Run Watcher 1:</strong>
         <pre><code>python watcher_1.py</code></pre>
-        <img src="https://github.com/user-attachments/assets/eefdd71c-ac0d-4136-b73e-b87d9ead036f" alt="watcher 1 running" />
+        ![image](https://github.com/user-attachments/assets/6c733f49-0aef-45d0-84a1-6410a2f8df4a)
     </li>
     <li><strong>Run Watcher 2:</strong>
         <pre><code>python watcher_2.py</code></pre>
