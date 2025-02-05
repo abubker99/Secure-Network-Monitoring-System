@@ -53,7 +53,7 @@
 </ul>
 
 <h3>2. Security</h3>
-<p>The messages exchanged between the watchers and the server are protected by digital signatures, which ensure their integrity. The server verifies each alert's signature using the corresponding watcher's public key. This approach prevents tampering and guarantees that the alerts originate from authenticated sources. Although the system previously employed AES encryption for key exchange, the current design focuses solely on using public‐key cryptography for ensuring message integrity.</p>
+<p>The messages exchanged between the watchers and the server are protected by digital signatures, which ensure their integrity. The server verifies each alert's signature using the corresponding watcher's public key. This approach prevents tampering and guarantees that the alerts originate from authenticated sources. with  focuse on using public‐key cryptography for ensuring message integrity.</p>
 
 <h2 id="conclusion">Conclusion</h2>
 <p>This project provides a secure method for monitoring resource usage on networked hosts. By relying on digital signatures for integrity verification, the system ensures that alerts are authentic and untampered. Additionally, it can detect potential Denial of Service (DoS) attacks based on unusual alert patterns, thereby providing administrators with critical early warning signals.</p>
