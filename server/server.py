@@ -14,7 +14,7 @@ ALERT_TIMEFRAME = 10  # Time window for detecting DDoS
 
 alerts_received = {}
 
-# Load Server's Private Key
+# Load Server's Private Key (not used for key exchange anymore)
 with open("server_private.pem", "rb") as f:
     SERVER_PRIVATE_KEY = serialization.load_pem_private_key(f.read(), password=None)
 
@@ -26,15 +26,12 @@ with open("watcher2_public.pem", "rb") as f:
 with open("watcher3_public.pem", "rb") as f:
     WATCHER3_PUBLIC_KEY = serialization.load_pem_public_key(f.read())
 
-# Store AES keys per watcher (if needed later)
-WATCHER_KEYS = {}
-
 def handle_watcher(conn):
     global alerts_received
     print("[+] New connection from a watcher.")
 
     try:
-        # Step 1: Receive plain text message identifying the watcher
+        # Step 1: Receive plain-text watcher identification.
         watcher_id = conn.recv(1024).decode().strip()
         print(f"[+] Received watcher identification: {watcher_id}")
         if watcher_id not in ["watcher1", "watcher2", "watcher3"]:
@@ -42,29 +39,9 @@ def handle_watcher(conn):
             conn.close()
             return
 
-        # Step 2: Generate an AES key for the watcher (for further operations if needed)
-        aes_key = os.urandom(16)
-        WATCHER_KEYS[watcher_id] = aes_key
+        print(f"[+] Connection established with {watcher_id}. Waiting for alerts...")
 
-        # Step 3: Sign (i.e. “encrypt” with the server’s private key) the AES key to guarantee integrity
-        signature = SERVER_PRIVATE_KEY.sign(
-            aes_key,
-            padding.PSS(
-                mgf=padding.MGF1(hashes.SHA256()),
-                salt_length=padding.PSS.MAX_LENGTH
-            ),
-            hashes.SHA256()
-        )
-
-        # Step 4: Create a package with the AES key and its signature (sent in plaintext)
-        package = {
-            "aes_key": aes_key.hex(),
-            "signature": signature.hex()
-        }
-        conn.send(json.dumps(package).encode())
-        print("[+] Sent AES key package (with signature) to watcher.")
-
-        # Now, continuously receive alerts from the watcher.
+        # Now continuously receive alerts from the watcher.
         while True:
             data = conn.recv(4096)
             if not data:
@@ -77,7 +54,7 @@ def handle_watcher(conn):
             alert_signature = bytes.fromhex(alert_data.get("signature", ""))
             sender_id = alert_data.get("watcher_id", "unknown")
 
-            # Determine the correct public key for the sender
+            # Determine the correct public key for the sender.
             if sender_id == "watcher1":
                 watcher_pub = WATCHER1_PUBLIC_KEY
             elif sender_id == "watcher2":
@@ -108,8 +85,8 @@ def handle_watcher(conn):
             # Remove alerts older than ALERT_TIMEFRAME.
             for key in list(alerts_received.keys()):
                 alerts_received[key] = [t for t in alerts_received[key] if time.time() - t < ALERT_TIMEFRAME]
-            active_watchers = sum(1 for times in alerts_received.values() if times)
-            if active_watchers >= ALERT_THRESHOLD:
+            active_alerts = sum(1 for times in alerts_received.values() if times)
+            if active_alerts >= ALERT_THRESHOLD:
                 print("🚨 ALERT: Possible Distributed Denial-of-Service (DDoS) Attack Detected! 🚨")
                 alerts_received.clear()
 
